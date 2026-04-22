@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>小工具箱 | 在线工具大全</title>
+    <meta
+      name="description"
+      content="一个参考 Time163 工具站信息架构重新实现的在线小工具网站，包含时间、文本、编码、数学、健康、娱乐等常用工具。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="brand-mark">TG</div>
+          <div>
+            <p class="brand-eyebrow">Time Inspired Toolbox</p>
+            <h1>小工具箱</h1>
+          </div>
+        </div>
+
+        <div class="sidebar-panel">
+          <p class="sidebar-title">分类导航</p>
+          <nav id="categoryNav" class="category-nav"></nav>
+        </div>
+
+        <div class="sidebar-panel compact">
+          <p class="sidebar-title">站点特性</p>
+          <ul class="sidebar-points">
+            <li>响应式分类导航</li>
+            <li>搜索与收藏</li>
+            <li>实时北京时间</li>
+            <li>统一工具弹层</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="content">
+        <header class="topbar">
+          <button class="menu-button" id="menuButton" aria-label="打开分类导航">
+            <span></span>
+            <span></span>
+          </button>
+
+          <div class="search-wrap">
+            <label class="search-box" for="toolSearch">
+              <span>搜索工具</span>
+              <input
+                id="toolSearch"
+                type="search"
+                placeholder="例如：密码、BMI、JSON、计算器、倒计时"
+                autocomplete="off"
+              />
+            </label>
+          </div>
+
+          <div class="topbar-actions">
+            <button class="ghost-button" id="favoritesToggle">只看收藏</button>
+            <button class="ghost-button" id="themeToggle">切换模式</button>
+          </div>
+        </header>
+
+        <main class="main-content">
+          <section class="hero">
+            <div class="hero-copy">
+              <p class="hero-kicker">Toolbox Rebuilt</p>
+              <h2>按原站的“分类导航 + 工具卡片 + 即开即用”思路，重做一个更现代的在线工具网站。</h2>
+              <p class="hero-text">
+                我们保留 Time163 toolbox 的核心产品结构：左侧分类、顶部搜索、工具统计、收藏切换、按分类浏览与直接打开工具；同时重新设计了界面风格和可扩展的数据结构，方便后续继续扩充。
+              </p>
+              <div class="hero-actions">
+                <a href="#toolSections" class="primary-link">开始使用</a>
+                <button class="secondary-link" id="openFeatured">打开推荐工具</button>
+              </div>
+            </div>
+
+            <div class="hero-stats">
+              <div class="time-card">
+                <p>北京时间</p>
+                <strong id="bjTime">--:--:--</strong>
+                <span id="bjDate">---- 年 -- 月 -- 日</span>
+              </div>
+              <div class="stats-grid">
+                <article>
+                  <span>工具数量</span>
+                  <strong id="toolCount">0</strong>
+                </article>
+                <article>
+                  <span>分类数量</span>
+                  <strong id="categoryCount">0</strong>
+                </article>
+                <article>
+                  <span>已收藏</span>
+                  <strong id="favoriteCount">0</strong>
+                </article>
+                <article>
+                  <span>已实现工具</span>
+                  <strong id="implementedCount">0</strong>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="summary-bar">
+            <div>
+              <p class="summary-label">站点分析摘要</p>
+              <h3>原站核心模块</h3>
+            </div>
+            <div class="summary-tags" id="summaryTags"></div>
+          </section>
+
+          <section class="featured-strip" id="featuredStrip"></section>
+
+          <section class="results-bar">
+            <div>
+              <p class="summary-label">当前视图</p>
+              <h3 id="resultsTitle">全部工具</h3>
+            </div>
+            <p id="resultsMeta">正在加载工具数据…</p>
+          </section>
+
+          <div id="toolSections" class="tool-sections"></div>
+        </main>
+
+        <footer class="footer">
+          <div>
+            <h3>关于这个版本</h3>
+            <p>
+              这个站点基于对目标网站信息架构的分析进行重构实现，重点复刻“工具门户”的使用方式，而不是直接搬运原站素材。
+            </p>
+          </div>
+          <div>
+            <h3>适合扩展</h3>
+            <p>工具数据与渲染逻辑已经拆分，后续可继续新增更多工具页或接入 GitHub Pages 部署。</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <div class="modal-backdrop hidden" id="toolModal">
+      <div class="tool-modal">
+        <button class="modal-close" id="modalClose" aria-label="关闭工具详情">×</button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
